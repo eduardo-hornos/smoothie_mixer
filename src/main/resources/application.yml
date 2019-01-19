@@ -1,0 +1,8 @@
+micronaut:
+    application:
+        name: smoothie-mixer
+
+endpoints:
+    info:
+        enabled: true
+        sensitive: false
