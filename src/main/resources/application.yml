@@ -6,3 +6,20 @@ endpoints:
     info:
         enabled: true
         sensitive: false
+
+datasources:
+    default:
+        url: ${JDBC_URL:`jdbc:mysql://db4free.net:3306/smoothie_mixer`}
+        username: ${JDBC_USER:ajierro}
+        password: ${JDBC_PASSWORD:14121986}
+        driverClassName: ${JDBC_DRIVER:com.mysql.jdbc.Driver}
+
+jpa:
+    default:
+        packages-to-scan:
+            - 'com.ajierro.domain'
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+                show_sql: true
