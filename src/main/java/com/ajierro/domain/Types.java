@@ -1,11 +1,18 @@
 package com.ajierro.domain;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @Table(name = "Types")
+@Where(clause = "deleted IS NULL")
+@SQLDelete(sql = "UPDATE Types " +
+                "SET deleted = NOW() " +
+                "WHERE id = ?")
 public class Types {
 
     public Types() {}
@@ -23,7 +30,7 @@ public class Types {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @NotNull
