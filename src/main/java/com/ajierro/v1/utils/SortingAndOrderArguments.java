@@ -8,18 +8,18 @@ import java.util.Optional;
 
 public class SortingAndOrderArguments {
     @Nullable
-    @PositiveOrZero // <1>
+    @PositiveOrZero
     private Integer offset;
 
     @Nullable
-    @Positive // <1>
+    @Positive
     private Integer max;
 
     @Nullable
-    @Pattern(regexp = "id|name")  // <1>
+    @Pattern(regexp = "id|name")
     private String sort;
 
-    @Pattern(regexp = "asc|ASC|desc|DESC")  // <1>
+    @Pattern(regexp = "asc|ASC|desc|DESC")
     @Nullable
     private String order;
 

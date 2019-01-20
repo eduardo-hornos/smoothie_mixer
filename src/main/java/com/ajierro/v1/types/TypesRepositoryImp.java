@@ -38,8 +38,8 @@ public class TypesRepositoryImp implements TypesRepository {
 
     @Override
     @Transactional // <4>
-    public Types save(@NotBlank String name, @NotBlank String description, @NotNull Date created, @NotNull Date updated) {
-        Types type = new Types(name, description, created, updated);
+    public Types save(@NotBlank String name, @NotBlank String description) {
+        Types type = new Types(name, description, new Date(), new Date());
         entityManager.persist(type);
         return type;
     }
@@ -69,10 +69,23 @@ public class TypesRepositoryImp implements TypesRepository {
 
     @Override
     @Transactional
-    public int update(@NotNull Long id, @NotBlank String name) {
-        return entityManager.createQuery("UPDATE Types g SET name = :name where id = :id")
-                .setParameter("name", name)
-                .setParameter("id", id)
-                .executeUpdate();
+    public int update(@NotNull Long id, String name, String description) {
+        if (name != null && description != null) {
+            return entityManager.createQuery("UPDATE Types g SET name = :name, description = :description, updated = NOW() where id = :id AND deleted IS NULL")
+                    .setParameter("name", name)
+                    .setParameter("description", description)
+                    .setParameter("id", id)
+                    .executeUpdate();
+        } else if (name != null) {
+            return entityManager.createQuery("UPDATE Types g SET name = :name, updated = NOW() where id = :id AND deleted IS NULL")
+                    .setParameter("name", name)
+                    .setParameter("id", id)
+                    .executeUpdate();
+        } else {
+            return entityManager.createQuery("UPDATE Types g SET description = :description, updated = NOW() where id = :id AND deleted IS NULL")
+                    .setParameter("description", description)
+                    .setParameter("id", id)
+                    .executeUpdate();
+        }
     }
 }
