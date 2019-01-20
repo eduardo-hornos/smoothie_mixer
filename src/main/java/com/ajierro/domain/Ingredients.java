@@ -17,9 +17,9 @@ public class Ingredients {
 
     public Ingredients() {}
 
-    public Ingredients(@NotNull String name, @NotNull String description, @NotNull Date created, @NotNull Date updated) {
+    public Ingredients(@NotNull String name, @NotNull String type, @NotNull Date created, @NotNull Date updated) {
         this.name = name;
-        this.description = description;
+        this.type = type;
         this.created = created;
         this.updated = updated;
     }
@@ -34,8 +34,8 @@ public class Ingredients {
     private String name;
 
     @NotNull
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "type", nullable = false)
+    private String type;
 
     @Column(name = "created", nullable = false)
     private Date created;
@@ -66,12 +66,12 @@ public class Ingredients {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Date getCreated() {
@@ -103,7 +103,7 @@ public class Ingredients {
         return "Ingredients{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
                 ", created='" + created + '\'' +
                 ", updated='" + updated + '\'' +
                 ", deleted='" + deleted + '\'' +

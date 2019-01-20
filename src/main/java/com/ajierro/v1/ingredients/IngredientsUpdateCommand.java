@@ -3,13 +3,13 @@ package com.ajierro.v1.ingredients;
 public class IngredientsUpdateCommand {
 
     private String name;
-    private String description;
+    private String type;
 
     public IngredientsUpdateCommand() {}
 
-    public IngredientsUpdateCommand(String name, String description) {
+    public IngredientsUpdateCommand(String name, String type) {
         this.name = name;
-        this.description = description;
+        this.type = type;
     }
 
     String getName() {
@@ -20,11 +20,11 @@ public class IngredientsUpdateCommand {
         this.name = name;
     }
 
-    String getDescription() {
-        return description;
+    String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
 }

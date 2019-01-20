@@ -46,7 +46,7 @@ public class IngredientsController {
 
     @Post("/")
     public HttpResponse<Ingredients> save(@Body @Valid IngredientsSaveCommand cmd) {
-        Ingredients ingredient = ingredientsRepository.save(cmd.getName(), cmd.getDescription());
+        Ingredients ingredient = ingredientsRepository.save(cmd.getName(), cmd.getType());
 
         return HttpResponse
                 .created(ingredient)
@@ -55,7 +55,7 @@ public class IngredientsController {
 
     @Put("/{id}")
     public HttpResponse update(@Body @Valid IngredientsUpdateCommand command, Long id) {
-        int numberOfEntitiesUpdated = ingredientsRepository.update(id, command.getName(), command.getDescription());
+        int numberOfEntitiesUpdated = ingredientsRepository.update(id, command.getName(), command.getType());
 
         return HttpResponse
                 .noContent()

@@ -38,8 +38,8 @@ public class IngredientsRepositoryImp implements IngredientsRepository {
 
     @Override
     @Transactional
-    public Ingredients save(@NotBlank String name, @NotBlank String description) {
-        Ingredients ingredient = new Ingredients(name, description, new Date(), new Date());
+    public Ingredients save(@NotBlank String name, @NotBlank String type) {
+        Ingredients ingredient = new Ingredients(name, type, new Date(), new Date());
         entityManager.persist(ingredient);
         return ingredient;
     }
@@ -69,11 +69,11 @@ public class IngredientsRepositoryImp implements IngredientsRepository {
 
     @Override
     @Transactional
-    public int update(@NotNull Long id, String name, String description) {
-        if (name != null && description != null) {
-            return entityManager.createQuery("UPDATE Ingredients g SET name = :name, description = :description, updated = NOW() where id = :id AND deleted IS NULL")
+    public int update(@NotNull Long id, String name, String type) {
+        if (name != null && type != null) {
+            return entityManager.createQuery("UPDATE Ingredients g SET name = :name, type = :type, updated = NOW() where id = :id AND deleted IS NULL")
                     .setParameter("name", name)
-                    .setParameter("description", description)
+                    .setParameter("type", type)
                     .setParameter("id", id)
                     .executeUpdate();
         } else if (name != null) {
@@ -82,8 +82,8 @@ public class IngredientsRepositoryImp implements IngredientsRepository {
                     .setParameter("id", id)
                     .executeUpdate();
         } else {
-            return entityManager.createQuery("UPDATE Ingredients g SET description = :description, updated = NOW() where id = :id AND deleted IS NULL")
-                    .setParameter("description", description)
+            return entityManager.createQuery("UPDATE Ingredients g SET type = :type, updated = NOW() where id = :id AND deleted IS NULL")
+                    .setParameter("type", type)
                     .setParameter("id", id)
                     .executeUpdate();
         }
