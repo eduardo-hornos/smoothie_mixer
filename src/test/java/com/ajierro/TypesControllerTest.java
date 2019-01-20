@@ -17,15 +17,15 @@ import static org.hamcrest.Matchers.is;
 
 public class TypesControllerTest {
 
-    private static EmbeddedServer server; // <1>
-    private static HttpClient client; // <2>
+    private static EmbeddedServer server;
+    private static HttpClient client;
 
     @BeforeClass
     public static void setupServer() {
         server = ApplicationContext
                 .build()
-                .run(EmbeddedServer.class); // <1>
-        client = server.getApplicationContext().createBean(HttpClient.class, server.getURL()); // <2>
+                .run(EmbeddedServer.class);
+        client = server.getApplicationContext().createBean(HttpClient.class, server.getURL());
     }
 
     @AfterClass
